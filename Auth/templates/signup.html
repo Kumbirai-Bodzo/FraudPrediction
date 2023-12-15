@@ -1,0 +1,49 @@
+{% extends "base.html" %} {% block content %}
+
+<div class="container text-center">
+  {% if form.errors %}
+  <p>Your username and password didn't match. Please try again.</p>
+  {% endif %} {% if next %} {% if user.is_authenticated %}
+  <p>
+    Your account doesn't have access to this page. To proceed, please login with
+    an account that has access.
+  </p>
+  {% else %}
+  <p>Please login to see this page.</p>
+  {% endif %} {% endif %}
+<div class="row " >
+  <div class="col-6 m-auto car bg-light shadow">
+    <h1 class="text-center text-dark font-weight-bolder text-dark2">
+        <strong>SIGNUP</strong>
+        </h1>
+  <form method="post">
+    {% csrf_token %}
+    <div class="table-responsiv">
+      <table class="table table-borderless">
+        <tr>
+          <td>{{ form.username.label_tag }}</td>
+          <td>{{ form.username }}</td>
+        </tr>
+        <tr>
+          <td>{{ form.password1.label_tag }}</td>
+          <td>{{ form.password1 }}</td>
+        </tr>
+        <tr>
+            <td>{{ form.password2.label_tag }}</td>
+            <td>{{ form.password2 }}</td>
+          </tr>
+      </table>
+    </div>
+    <div class="">
+        <button type="submit" class="bg-dark text-dar">Signup</button>
+    </div>
+   
+  </form>
+  <div class="text-center">
+    <a href="{% url 'login' %}">Already have account?</a>
+
+  </div>
+</div>
+</div>
+  {% endblock %}
+</div>

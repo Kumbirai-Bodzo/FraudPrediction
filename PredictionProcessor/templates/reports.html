@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block content %}
+<main>
+ 
+
+  <div id="dashboard">
+    <h1 style="font-size: 40px">Fraud Detection Reports</h1>
+    {%if reports is not None%}
+    <div id="results-header">
+      <div class="table-header" id="sno">SNo.</div>
+      <div class="table-header" id="batch_no">BatchNo.</div>
+
+
+      <div class="table-header" id="transaction-id">TransactionID</div>
+      <div class="table-header" id="prediction">
+        Probability of Being Fraudulent
+      </div>
+    </div>
+    <div id="results">
+      <table>
+        <tbody>
+      
+          {% for value in reports%}
+          <tr class="table-row">
+            <td> {{ forloop.counter }}</td>
+            <td class="table-cell">{{ value.batch_no|floatformat:"0" }}</td>
+
+            <td class="table-cell">{{ value.transaction_id|floatformat:"0" }}</td>
+            <td class="table-cell">{{ value.probability_fradulent  }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+    {%else%}
+
+    <div id="size-overflow">
+      {{error}}
+    </div>
+
+    {%endif%}
+  </div>
+</main>
+{% endblock %}
